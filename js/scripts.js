@@ -34,7 +34,9 @@ Game.prototype.detectVictory = function (winner) {
     (this.row1[2] === "O" && this.row2[1] === "O" && this.row3[0] === "O")
   ) {
     console.log(winner.symbol + " Wins")
+    $('#winner').show();
     $('#winner').append(winner.symbol + " WINS")
+    $('#game-board').append("<button id='reset-button'class='btn-primary btn-lg'type='submit' name='button'>Play Again</button>")
   }
 }
 
@@ -152,5 +154,8 @@ $(document).ready(function(){
     activePlayer.plays(newGame, userInput);
     newGame.detectVictory(activePlayer);
     playerTurn += 1;
+  });
+  $( "#reset-button").submit(function(){
+    console.log("working reset button");
   });
 });

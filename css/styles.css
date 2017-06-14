@@ -23,6 +23,15 @@
 
 }
 
+.jumbotron {
+  text-align: center;
+}
+
+#game-board {
+  margin-top: 50px;
+  margin-left: 250px;
+}
+
 .col-sm-3 {
   border-radius: 10px;
   border-style: solid;
@@ -36,7 +45,13 @@
 }
 
 #winner {
+  margin-top: 200px;
+  display: none;
   font-size: 7em;
-  color: blue;
-  text-align: center;
+}
+
+#reset-button {
+  margin-top: 50px;
+  margin-left: 250px;
+  font-size: 2em;
 }
