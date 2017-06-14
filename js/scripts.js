@@ -31,7 +31,7 @@ Game.prototype.detectVictory = function () {
     (this.row2[2] === "O" && this.row2[2] === "O" && this.row2[2] === "O") ||
     //o diagonal
     (this.row1[0] === "O" && this.row2[1] === "O" && this.row2[2] === "O") ||
-    (this.row1[2] === "O" && this.row2[1] === "O" && this.row2[0] === "O") ||
+    (this.row1[2] === "O" && this.row2[1] === "O" && this.row2[0] === "O")
   ) {console.log(playerx.symbol + " Wins")}
 }
 
