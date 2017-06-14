@@ -22,3 +22,21 @@
 @media (max-width: 480px) {
 
 }
+
+.col-sm-3 {
+  border-radius: 10px;
+  border-style: solid;
+  text-align: center;
+  padding-top: 25px;
+  height: 150px;
+}
+
+.symbol-mark {
+  font-size: 4em;
+}
+
+#winner {
+  font-size: 7em;
+  color: blue;
+  text-align: center;
+}

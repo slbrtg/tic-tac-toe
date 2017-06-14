@@ -32,7 +32,10 @@ Game.prototype.detectVictory = function (winner) {
     //o diagonal
     (this.row1[0] === "O" && this.row2[1] === "O" && this.row3[2] === "O") ||
     (this.row1[2] === "O" && this.row2[1] === "O" && this.row3[0] === "O")
-  ) {console.log(winner.symbol + " Wins")}
+  ) {
+    console.log(winner.symbol + " Wins")
+    $('#winner').append(winner.symbol + " WINS")
+  }
 }
 
 //creates players or bots based on input
@@ -76,6 +79,7 @@ function Player (symbol){
 Player.prototype.plays = function(game,input) {
   symbol = this.symbol;
   console.log(symbol +" makes a move");
+  $("#" + input).append("<h1 class='symbol-mark'>" + activePlayer.symbol + "</h1>");
   game.receiveInput(input,symbol);
 }
 
