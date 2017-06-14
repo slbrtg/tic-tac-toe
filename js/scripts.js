@@ -8,7 +8,7 @@ function Game (){
   this.numOfPlayers = 1;
 }
 
-Game.prototype.detectVictory = function () {
+Game.prototype.detectVictory = function (winner) {
   if (
     //x vertical
     (this.row1[0] === "X" && this.row1[1] === "X" && this.row1[2] === "X") ||
@@ -32,7 +32,7 @@ Game.prototype.detectVictory = function () {
     //o diagonal
     (this.row1[0] === "O" && this.row2[1] === "O" && this.row2[2] === "O") ||
     (this.row1[2] === "O" && this.row2[1] === "O" && this.row2[0] === "O")
-  ) {console.log(playerx.symbol + " Wins")}
+  ) {console.log(winner.symbol + " Wins")}
 }
 
 //creates players or bots based on input
@@ -44,7 +44,6 @@ Game.prototype.setPlayers = function(userNum){
     playerx = new Player("X");
     playero = new Player("O");
   }
-  console.log(playero + " " + playerx);
 }
 
 //accepts a players input and marks the board according to
@@ -74,12 +73,80 @@ function Player (symbol){
 
 
 //allows player to put a mark on the board
-Player.prototype.play = function(game,input,symbol) {
+Player.prototype.plays = function(game,input) {
+  symbol = this.symbol;
   console.log(symbol +" makes a move");
   game.receiveInput(input,symbol);
 }
 
 
-$(document).ready(function() {
+$(document).ready(function(){
+  newGame = new Game();
+  newGame.setPlayers(2);
+  playerTurn= 2;
+  activePlayer = playero;
 
+  $( "#0" ).on( "click", function(){
+    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+    var userInput = this.id;
+    activePlayer.plays(newGame, userInput);
+    newGame.detectVictory(activePlayer);
+    playerTurn += 1;
+  });
+  $( "#1" ).on( "click", function(){
+    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+    var userInput = this.id;
+    activePlayer.plays(newGame, userInput);
+    newGame.detectVictory(activePlayer);
+    playerTurn += 1;
+  });
+  $( "#2" ).on( "click", function(){
+    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+    var userInput = this.id;
+    activePlayer.plays(newGame, userInput);
+    newGame.detectVictory(activePlayer);
+    playerTurn += 1;
+  });
+  $( "#3" ).on( "click", function(){
+    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+    var userInput = this.id;
+    activePlayer.plays(newGame, userInput);
+    newGame.detectVictory(activePlayer);
+    playerTurn += 1;
+  });
+  $( "#4" ).on( "click", function(){
+    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+    var userInput = this.id;
+    activePlayer.plays(newGame, userInput);
+    newGame.detectVictory(activePlayer);
+    playerTurn += 1;
+  });
+  $( "#5" ).on( "click", function(){
+    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+    var userInput = this.id;
+    activePlayer.plays(newGame, userInput);
+    newGame.detectVictory(activePlayer);
+    playerTurn += 1;
+  });
+  $( "#6" ).on( "click", function(){
+    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+    var userInput = this.id;
+    activePlayer.plays(newGame, userInput);
+    newGame.detectVictory(activePlayer);
+    playerTurn += 1;
+  });
+  $( "#7" ).on( "click", function(){
+    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+    var userInput = this.id;
+    activePlayer.plays(newGame, userInput);
+    newGame.detectVictory(activePlayer);
+    playerTurn += 1;
+  });
+  $( "#8" ).on( "click", function(){
+    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+    var userInput = this.id;
+    activePlayer.plays(newGame, userInput);
+    newGame.detectVictory(activePlayer);
+    playerTurn += 1;
+  });
 });
