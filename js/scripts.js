@@ -15,23 +15,23 @@ Game.prototype.detectVictory = function (winner) {
     (this.row2[0] === "X" && this.row2[1] === "X" && this.row2[2] === "X") ||
     (this.row3[0] === "X" && this.row3[1] === "X" && this.row3[2] === "X") ||
     //x horizontal
-    (this.row1[0] === "X" && this.row2[0] === "X" && this.row2[0] === "X") ||
-    (this.row2[1] === "X" && this.row2[1] === "X" && this.row2[1] === "X") ||
-    (this.row2[2] === "X" && this.row2[2] === "X" && this.row2[2] === "X") ||
+    (this.row1[0] === "X" && this.row2[0] === "X" && this.row3[0] === "X") ||
+    (this.row1[1] === "X" && this.row2[1] === "X" && this.row3[1] === "X") ||
+    (this.row1[2] === "X" && this.row2[2] === "X" && this.row3[2] === "X") ||
     //x diagonal
-    (this.row1[0] === "X" && this.row2[1] === "X" && this.row2[2] === "X") ||
-    (this.row1[2] === "X" && this.row2[1] === "X" && this.row2[0] === "X") ||
+    (this.row1[0] === "X" && this.row2[1] === "X" && this.row3[2] === "X") ||
+    (this.row1[2] === "X" && this.row2[1] === "X" && this.row3[0] === "X") ||
     //o vertical
     (this.row1[0] === "O" && this.row1[1] === "O" && this.row1[2] === "O") ||
     (this.row2[0] === "O" && this.row2[1] === "O" && this.row2[2] === "O") ||
     (this.row3[0] === "O" && this.row3[1] === "O" && this.row3[2] === "O") ||
     //o horizontal
-    (this.row1[0] === "O" && this.row2[0] === "O" && this.row2[0] === "O") ||
-    (this.row2[1] === "O" && this.row2[1] === "O" && this.row2[1] === "O") ||
-    (this.row2[2] === "O" && this.row2[2] === "O" && this.row2[2] === "O") ||
+    (this.row1[0] === "X" && this.row2[0] === "X" && this.row3[0] === "X") ||
+    (this.row1[1] === "X" && this.row2[1] === "X" && this.row3[1] === "X") ||
+    (this.row1[2] === "X" && this.row2[2] === "X" && this.row3[2] === "X") ||
     //o diagonal
-    (this.row1[0] === "O" && this.row2[1] === "O" && this.row2[2] === "O") ||
-    (this.row1[2] === "O" && this.row2[1] === "O" && this.row2[0] === "O")
+    (this.row1[0] === "O" && this.row2[1] === "O" && this.row3[2] === "O") ||
+    (this.row1[2] === "O" && this.row2[1] === "O" && this.row3[0] === "O")
   ) {console.log(winner.symbol + " Wins")}
 }
 
