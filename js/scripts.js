@@ -8,6 +8,33 @@ function Game (){
   this.numOfPlayers = 1;
 }
 
+Game.prototype.detectVictory = function () {
+  if (
+    //x vertical
+    (this.row1[0] === "X" && this.row1[1] === "X" && this.row1[2] === "X") ||
+    (this.row2[0] === "X" && this.row2[1] === "X" && this.row2[2] === "X") ||
+    (this.row3[0] === "X" && this.row3[1] === "X" && this.row3[2] === "X") ||
+    //x horizontal
+    (this.row1[0] === "X" && this.row2[0] === "X" && this.row2[0] === "X") ||
+    (this.row2[1] === "X" && this.row2[1] === "X" && this.row2[1] === "X") ||
+    (this.row2[2] === "X" && this.row2[2] === "X" && this.row2[2] === "X") ||
+    //x diagonal
+    (this.row1[0] === "X" && this.row2[1] === "X" && this.row2[2] === "X") ||
+    (this.row1[2] === "X" && this.row2[1] === "X" && this.row2[0] === "X") ||
+    //o vertical
+    (this.row1[0] === "O" && this.row1[1] === "O" && this.row1[2] === "O") ||
+    (this.row2[0] === "O" && this.row2[1] === "O" && this.row2[2] === "O") ||
+    (this.row3[0] === "O" && this.row3[1] === "O" && this.row3[2] === "O") ||
+    //o horizontal
+    (this.row1[0] === "O" && this.row2[0] === "O" && this.row2[0] === "O") ||
+    (this.row2[1] === "O" && this.row2[1] === "O" && this.row2[1] === "O") ||
+    (this.row2[2] === "O" && this.row2[2] === "O" && this.row2[2] === "O") ||
+    //o diagonal
+    (this.row1[0] === "O" && this.row2[1] === "O" && this.row2[2] === "O") ||
+    (this.row1[2] === "O" && this.row2[1] === "O" && this.row2[0] === "O") ||
+  ) {console.log(playerx.symbol + " Wins")}
+}
+
 //creates players or bots based on input
 Game.prototype.setPlayers = function(userNum){
   this.numOfPlayers = userNum;
@@ -37,6 +64,7 @@ Game.prototype.receiveInput = function (input, symbol) {
   console.log(newGame.row3);
 }
 
+
 //construct for Player object
 function Player (symbol){
   this.symbol = symbol;
@@ -45,20 +73,11 @@ function Player (symbol){
 }
 
 
-
 //allows player to put a mark on the board
 Player.prototype.play = function(game,input,symbol) {
   console.log(symbol +" makes a move");
   game.receiveInput(input,symbol);
 }
-
-
-
-
-
-
-
-
 
 
 $(document).ready(function() {
