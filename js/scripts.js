@@ -6,6 +6,8 @@ function Game (){
   this.row3 = [];
   this.row3.length = 3
   this.numOfPlayers = 1;
+  this.victory = false;
+  this.tie = false;
 }
 
 Game.prototype.detectVictory = function (winner) {
@@ -33,7 +35,9 @@ Game.prototype.detectVictory = function (winner) {
     (this.row1[0] === "O" && this.row2[1] === "O" && this.row3[2] === "O") ||
     (this.row1[2] === "O" && this.row2[1] === "O" && this.row3[0] === "O")
   ) {
+    //Output for winner
     console.log(winner.symbol + " Wins")
+    this.victory = true;
     $(".row").children().unbind('click');
     $('#winner').show();
     $('#winner').empty().append(winner.symbol + " WINS")
@@ -43,7 +47,9 @@ Game.prototype.detectVictory = function (winner) {
       location.reload();
       console.log("working reset button");
     });
+    //output for tie
   } else if (playerTurn >= 10) {
+    this.tie = true;
     $(".row").children().unbind('click');
     console.log("CAT'S GAME")
     $('#winner').show();
@@ -54,10 +60,10 @@ Game.prototype.detectVictory = function (winner) {
       location.reload();
       console.log("working reset button");
     });
-  } else {
-    $('#winner').show();
-    $('#winner').empty().append(winner.symbol +" makes a move")
-  }
+  } //else {
+  //   $('#winner').show();
+  //   $('#winner').empty().append(winner.symbol +" makes a move")
+  // }
 }
 
 //creates players or bots based on input
@@ -122,7 +128,7 @@ Computer.prototype.plays = function (game){
   }
   symbol = this.symbol;
   console.log(symbol +" makes a move");
-  $("#" + input).append("<h1 class='symbol-mark'>" + activePlayer.symbol + "</h1>");
+  $("#" + computerInput).append("<h1 class='symbol-mark'>" + activePlayer.symbol + "</h1>");
   game.receiveInput(computerInput,symbol);
 }
 
@@ -130,18 +136,28 @@ Computer.prototype.plays = function (game){
 
 $(document).ready(function(){
   newGame = new Game();
-  newGame.setPlayers(2);
+  newGame.setPlayers(1);
   playerTurn= 2;
   activePlayer = playero;
   playedNumbers = [];
 
   var playTTT = function(id){
+    //human rules
     if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = id;
+    var userInput = parseInt(id);
     activePlayer.plays(newGame, userInput);
     newGame.detectVictory(activePlayer);
     playerTurn += 1;
     $("#"+id).unbind('click');
+    //robot rules
+    if (newGame.numOfPlayers === 1 && newGame.victory === false && newGame.tie === false){
+      if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+      var userInput = parseInt(id);
+      activePlayer.plays(newGame, userInput);
+      newGame.detectVictory(activePlayer);
+      playerTurn += 1;
+      $("#"+id).unbind('click');
+    }
   }
 
   var computerPlayTTT = function(input){
