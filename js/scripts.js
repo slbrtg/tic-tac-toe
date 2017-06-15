@@ -36,9 +36,26 @@ Game.prototype.detectVictory = function (winner) {
     console.log(winner.symbol + " Wins")
     $('#winner').show();
     $('#winner').append(winner.symbol + " WINS")
-    $('#game-board').append("<button id='reset-button'class='btn-primary btn-lg'type='submit' name='button'>Play Again</button>")
+    //creates reset button for new game
+    $('#game-board').append("<button id='reset-button' class='btn-primary btn-lg'type='button' name='button'>Play Again</button>");
+    $("#reset-button").click(function(){
+      location.reload();
+      console.log("working reset button");
+    });
+  } else if (playerTurn >= 10) {
+    console.log("CAT'S GAME")
+    $('#winner').show();
+    $('#winner').append("CAT'S GAME")
+    //creates reset button for new game
+    $('#game-board').append("<button id='reset-button' class='btn-primary btn-lg'type='button' name='button'>Play Again</button>");
+    $("#reset-button").click(function(){
+      location.reload();
+      console.log("working reset button");
+    });
   }
 }
+
+
 
 //creates players or bots based on input
 Game.prototype.setPlayers = function(userNum){
@@ -154,8 +171,5 @@ $(document).ready(function(){
     activePlayer.plays(newGame, userInput);
     newGame.detectVictory(activePlayer);
     playerTurn += 1;
-  });
-  $( "#reset-button").submit(function(){
-    console.log("working reset button");
   });
 });
