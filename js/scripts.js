@@ -60,13 +60,12 @@ Game.prototype.detectVictory = function (winner) {
   }
 }
 
-
-
 //creates players or bots based on input
 Game.prototype.setPlayers = function(userNum){
   this.numOfPlayers = userNum;
   if(this.numOfPlayers === 1) {
     playerx = new Player("X");
+    playero = new Computer("O");
   } else {
     playerx = new Player("X");
     playero = new Player("O");
@@ -76,6 +75,7 @@ Game.prototype.setPlayers = function(userNum){
 //accepts a players input and marks the board according to
 //position and player symbol
 Game.prototype.receiveInput = function (input, symbol) {
+  playedNumbers.push(input);
   if (input < 3){
     this.row1[input]= symbol;
   } else if (input > 5){
@@ -85,6 +85,7 @@ Game.prototype.receiveInput = function (input, symbol) {
     input -= 3;
     this.row2[input]= symbol;
   }
+  console.log(playedNumbers);
   console.log(newGame.row1);
   console.log(newGame.row2);
   console.log(newGame.row3);
@@ -107,6 +108,24 @@ Player.prototype.plays = function(game,input) {
   game.receiveInput(input,symbol);
 }
 
+function Computer (symbol){
+  this.symbol = symbol;
+  this.winner = false;
+  this.userInput = 0;
+}
+
+Computer.prototype.plays = function (game){
+  var computerInput = 0;
+  computerInput = Math.floor(Math.random() * (8 - 0) + 0);
+  while(playedNumbers.includes(computerInput)){
+    computerInput = Math.floor(Math.random() * (8 - 0) + 0);
+  }
+  symbol = this.symbol;
+  console.log(symbol +" makes a move");
+  $("#" + input).append("<h1 class='symbol-mark'>" + activePlayer.symbol + "</h1>");
+  game.receiveInput(computerInput,symbol);
+}
+
 
 
 $(document).ready(function(){
@@ -114,6 +133,7 @@ $(document).ready(function(){
   newGame.setPlayers(2);
   playerTurn= 2;
   activePlayer = playero;
+  playedNumbers = [];
 
   var playTTT = function(id){
     if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
@@ -122,6 +142,11 @@ $(document).ready(function(){
     newGame.detectVictory(activePlayer);
     playerTurn += 1;
     $("#"+id).unbind('click');
+  }
+
+  var computerPlayTTT = function(input){
+    input = this.computerInput;
+    //if active player is of type computer...
   }
 
   $( "#0" ).on( "click", function(){
