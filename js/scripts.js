@@ -36,7 +36,7 @@ Game.prototype.detectVictory = function (winner) {
     console.log(winner.symbol + " Wins")
     $(".row").children().unbind('click');
     $('#winner').show();
-    $('#winner').append(winner.symbol + " WINS")
+    $('#winner').empty().append(winner.symbol + " WINS")
     //creates reset button for new game
     $('#game-board').append("<button id='reset-button' class='btn-primary btn-lg'type='button' name='button'>Play Again</button>");
     $("#reset-button").click(function(){
@@ -47,13 +47,16 @@ Game.prototype.detectVictory = function (winner) {
     $(".row").children().unbind('click');
     console.log("CAT'S GAME")
     $('#winner').show();
-    $('#winner').append("CAT'S GAME")
+    $('#winner').empty().append("CAT'S GAME")
     //creates reset button for new game
     $('#game-board').append("<button id='reset-button' class='btn-primary btn-lg'type='button' name='button'>Play Again</button>");
     $("#reset-button").click(function(){
       location.reload();
       console.log("working reset button");
     });
+  } else {
+    $('#winner').show();
+    $('#winner').empty().append(winner.symbol +" makes a move")
   }
 }
 
