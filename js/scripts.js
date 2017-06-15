@@ -26,14 +26,15 @@ Game.prototype.detectVictory = function (winner) {
     (this.row2[0] === "O" && this.row2[1] === "O" && this.row2[2] === "O") ||
     (this.row3[0] === "O" && this.row3[1] === "O" && this.row3[2] === "O") ||
     //o horizontal
-    (this.row1[0] === "X" && this.row2[0] === "X" && this.row3[0] === "X") ||
-    (this.row1[1] === "X" && this.row2[1] === "X" && this.row3[1] === "X") ||
-    (this.row1[2] === "X" && this.row2[2] === "X" && this.row3[2] === "X") ||
+    (this.row1[0] === "O" && this.row2[0] === "O" && this.row3[0] === "O") ||
+    (this.row1[1] === "O" && this.row2[1] === "O" && this.row3[1] === "O") ||
+    (this.row1[2] === "O" && this.row2[2] === "O" && this.row3[2] === "O") ||
     //o diagonal
     (this.row1[0] === "O" && this.row2[1] === "O" && this.row3[2] === "O") ||
     (this.row1[2] === "O" && this.row2[1] === "O" && this.row3[0] === "O")
   ) {
     console.log(winner.symbol + " Wins")
+    $(".row").children().unbind('click');
     $('#winner').show();
     $('#winner').append(winner.symbol + " WINS")
     //creates reset button for new game
@@ -43,6 +44,7 @@ Game.prototype.detectVictory = function (winner) {
       console.log("working reset button");
     });
   } else if (playerTurn >= 10) {
+    $(".row").children().unbind('click');
     console.log("CAT'S GAME")
     $('#winner').show();
     $('#winner').append("CAT'S GAME")
@@ -103,73 +105,46 @@ Player.prototype.plays = function(game,input) {
 }
 
 
+
 $(document).ready(function(){
   newGame = new Game();
   newGame.setPlayers(2);
   playerTurn= 2;
   activePlayer = playero;
 
-  $( "#0" ).on( "click", function(){
+  var playTTT = function(id){
     if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = this.id;
+    var userInput = id;
     activePlayer.plays(newGame, userInput);
     newGame.detectVictory(activePlayer);
     playerTurn += 1;
+  }
+
+  $( "#0" ).on( "click", function(){
+    playTTT(this.id);
   });
   $( "#1" ).on( "click", function(){
-    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = this.id;
-    activePlayer.plays(newGame, userInput);
-    newGame.detectVictory(activePlayer);
-    playerTurn += 1;
+    playTTT(this.id);
   });
   $( "#2" ).on( "click", function(){
-    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = this.id;
-    activePlayer.plays(newGame, userInput);
-    newGame.detectVictory(activePlayer);
-    playerTurn += 1;
+    playTTT(this.id);
   });
   $( "#3" ).on( "click", function(){
-    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = this.id;
-    activePlayer.plays(newGame, userInput);
-    newGame.detectVictory(activePlayer);
-    playerTurn += 1;
+    playTTT(this.id);
   });
   $( "#4" ).on( "click", function(){
-    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = this.id;
-    activePlayer.plays(newGame, userInput);
-    newGame.detectVictory(activePlayer);
-    playerTurn += 1;
+    playTTT(this.id);
   });
   $( "#5" ).on( "click", function(){
-    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = this.id;
-    activePlayer.plays(newGame, userInput);
-    newGame.detectVictory(activePlayer);
-    playerTurn += 1;
+    playTTT(this.id);
   });
   $( "#6" ).on( "click", function(){
-    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = this.id;
-    activePlayer.plays(newGame, userInput);
-    newGame.detectVictory(activePlayer);
-    playerTurn += 1;
+    playTTT(this.id);
   });
   $( "#7" ).on( "click", function(){
-    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = this.id;
-    activePlayer.plays(newGame, userInput);
-    newGame.detectVictory(activePlayer);
-    playerTurn += 1;
+    playTTT(this.id);
   });
   $( "#8" ).on( "click", function(){
-    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = this.id;
-    activePlayer.plays(newGame, userInput);
-    newGame.detectVictory(activePlayer);
-    playerTurn += 1;
+    playTTT(this.id);
   });
 });
