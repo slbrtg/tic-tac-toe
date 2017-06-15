@@ -60,10 +60,10 @@ Game.prototype.detectVictory = function (winner) {
       location.reload();
       console.log("working reset button");
     });
-  } //else {
-  //   $('#winner').show();
-  //   $('#winner').empty().append(winner.symbol +" makes a move")
-  // }
+  } else {
+      $('#winner').show();
+      $('#winner').empty().append(winner.symbol +" makes a move")
+    }
 }
 
 //creates players or bots based on input
@@ -133,37 +133,50 @@ Computer.prototype.plays = function (game){
 }
 
 
-
-$(document).ready(function(){
-  newGame = new Game();
-  newGame.setPlayers(1);
-  playerTurn= 2;
-  activePlayer = playero;
-  playedNumbers = [];
-
-  var playTTT = function(id){
-    //human rules
-    if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
-    var userInput = parseInt(id);
-    activePlayer.plays(newGame, userInput);
-    newGame.detectVictory(activePlayer);
-    playerTurn += 1;
-    $("#"+id).unbind('click');
-    //robot rules
-    if (newGame.numOfPlayers === 1 && newGame.victory === false && newGame.tie === false){
+//function to actually play the game
+function playTTT(id){
+  //human rules
+  if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
+  var userInput = parseInt(id);
+  activePlayer.plays(newGame, userInput);
+  newGame.detectVictory(activePlayer);
+  playerTurn += 1;
+  $("#"+id).unbind('click');
+  //robot rules
+  if (newGame.numOfPlayers === 1 && newGame.victory === false && newGame.tie === false){
+    setTimeout(function(){
       if (playerTurn % 2 === 0){activePlayer = playerx;} else {activePlayer = playero;}
       var userInput = parseInt(id);
       activePlayer.plays(newGame, userInput);
       newGame.detectVictory(activePlayer);
       playerTurn += 1;
       $("#"+id).unbind('click');
-    }
+    }, 250);
   }
+}
 
-  var computerPlayTTT = function(input){
-    input = this.computerInput;
-    //if active player is of type computer...
-  }
+
+
+
+$(document).ready(function(){
+  newGame = new Game();
+  numOfPlayers = 0;
+  $("button.btn-warning").click(function(){
+    numOfPlayers += 1;
+    newGame.setPlayers(numOfPlayers);
+    playerTurn= 2;
+    console.log(numOfPlayers);
+    activePlayer = playero;
+    playedNumbers = [];
+  });
+  $("button.btn-danger").click(function(){
+    numOfPlayers += 2;
+    newGame.setPlayers(numOfPlayers);
+    playerTurn= 2;
+    console.log(numOfPlayers);
+    activePlayer = playero;
+    playedNumbers = [];
+  });
 
   $( "#0" ).on( "click", function(){
     playTTT(this.id);
