@@ -118,6 +118,7 @@ $(document).ready(function(){
     activePlayer.plays(newGame, userInput);
     newGame.detectVictory(activePlayer);
     playerTurn += 1;
+    $("#"+id).unbind('click');
   }
 
   $( "#0" ).on( "click", function(){
